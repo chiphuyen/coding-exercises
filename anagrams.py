@@ -9,9 +9,15 @@ determines whether they're anagrams of one another.
 Solution should run in O(n1 + n2)
 There are two solutions:
     one is using counter
-    another one is also using dictionary, but slightly faster.
+    another one is also using dictionary. I thought it'd be faster,
+    but thanks @shubham8111 for pointing out, it's faster for strings
+    of less than 100 characters, then its performance gets worse.
+
 '''
 from collections import Counter
+import random
+import string
+import time
 
 
 def are_anagrams(str1, str2):
@@ -51,5 +57,26 @@ def test(anagram_fn):
     assert not anagram_fn('', ' ')
 
 
+def create_random_anagrams(n=10000):
+    characters = []
+    for c in range(n):
+        characters.append(random.choice(string.ascii_letters))
+    str1 = ''.join(characters)
+    random.shuffle(characters)
+    str2 = ''.join(characters)
+    return str1, str2
+
+
+def time_test(str1, str2):
+    start = time.time()
+    assert are_anagrams(str1, str2)
+    print('Time:', time.time() - start)
+    start = time.time()
+    assert are_anagrams_fast(str1, str2)
+    print('Time:', time.time() - start)
+
+
 test(are_anagrams)
 test(are_anagrams_fast)
+str1, str2 = create_random_anagrams()
+time_test(str1, str2)
