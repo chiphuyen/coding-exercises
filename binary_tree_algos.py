@@ -4,16 +4,18 @@ Algorithms available:
         input: root of a binary tree
         output: True if the binary tree is a binary search tree.
                 False otherwise
-        The idea is that if it's a binary search tree, when you traverse 
+        The idea is that if it's a binary search tree, when you traverse
         the tree in-order, the values will always be non-decreasing.
-        
-        Note that there are two versions of this function. 
+
+        Note that there are two versions of this function.
         The first one is how it should be.
         The second one is the one accepted by HackerRank.
 '''
 
+
 def is_bst(root):
     return _is_bst_helper(root, None)
+
 
 def _is_bst_helper(node, prev):
     if not node:
@@ -23,6 +25,7 @@ def _is_bst_helper(node, prev):
     if prev and prev.data >= node.data:
         return False
     return _is_bst_helper(node.right, node)
+
 
 def is_bst_hr(root):
     ''' The solution accepted by HackerRank'''
@@ -35,6 +38,7 @@ def is_bst_hr(root):
         if prev and prev >= node.data:
             return False
         seen.add(node.data)
+
 
 def _in_order_traversal(root, nodes):
     if not root:

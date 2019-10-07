@@ -17,23 +17,26 @@ Input: 120
 Output: 21
 
 Note:
-Assume we are dealing with an environment which could only hold integers within the 32-bit 
-signed integer range. For the purpose of this problem, assume that your function returns 0 when 
-the reversed integer overflows.
+Assume we are dealing with an environment which could only hold integers
+within the 32-bit signed integer range. For the purpose of this problem,
+assume that your function returns 0 when the reversed integer overflows.
 '''
+
+
 class Solution(object):
     def helper(self, x):
         if x < 10:
             return str(x)
         return str(x % 10) + self.helper(x // 10)
-    
+
     def reverse(self, x):
         """
         :type x: int
         :rtype: int
         """
-        r = int(self.helper(abs(x))) 
+        r = int(self.helper(abs(x)))
         return (r < 2 ** 31) * ((x > 0) - (x < 0)) * r
+
 
 solver = Solution()
 assert solver.reverse(-123) == -321

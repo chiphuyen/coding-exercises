@@ -13,7 +13,8 @@ Extra usage:
     list(bst): list all values of the tree in an in-order traversal
 '''
 
-import random 
+import random
+
 
 class Node(object):
     __slots__ = ('value', 'left', 'right')
@@ -22,6 +23,7 @@ class Node(object):
         self.value = value
         self.left = left
         self.right = right
+
 
 class BST(object):
     def __init__(self):
@@ -43,7 +45,7 @@ class BST(object):
         curr, parent = self._find_parent(self._root, None, value, True)
         if (not curr or curr.value != value):
             raise ValueError()
-        if not parent: # it's the root
+        if not parent:  # it's the root
             self._root = self._remove_root(self._root, True)
         else:
             if parent.left and parent.left.value == value:
@@ -108,12 +110,13 @@ class BST(object):
 
         if value <= node.value:
             if node.left:
-                node, prev = self._find_parent(node.left, node, value, to_remove)
+                node, prev = self._find_parent(
+                    node.left, node, value, to_remove)
             return node, prev
-        
+
         if node.right:
             node, prev = self._find_parent(node.right, node, value, to_remove)
-        
+
         return node, prev
 
     def _iter(self, node):
@@ -121,6 +124,7 @@ class BST(object):
             yield from self._iter(node.left)
             yield node.value
             yield from self._iter(node.right)
+
 
 def test_bst():
     bst = BST()
@@ -140,8 +144,5 @@ def test_bst():
 
     assert list(bst) == sorted(values)
 
+
 test_bst()
-
-
-            
-

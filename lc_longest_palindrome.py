@@ -2,12 +2,12 @@
 This is a medium problem from leetcode.
 https://leetcode.com/problems/longest-palindromic-substring/
 
-Given a string s, find the longest palindromic substring in s. 
+Given a string s, find the longest palindromic substring in s.
 You may assume that the maximum length of s is 1000.
 
 Example:
 Input: "babad"
-Output: "bab" or 
+Output: "bab" or
 Note: "aba" is also a valid answer.
 
 Example:
@@ -20,13 +20,15 @@ Solution idea:
 Go over each character in the string and find the longest palindrome
 that is centered around that character.
 A palindrome that centers around that character can either has odd length
-or even length. 
+or even length.
 If it has odd length, the character is the exact center.
 If it has even length, there are two cases:
-    if the next character is the same as this character, their combination is the center.
-    if not, the longest palindrome with even length centered around that character is ''
+    if the next character is the same as this, their combination is the center.
+    if not, the longest palindrome with even length centered around
+    that character is ''
 
 '''
+
 
 class Solution(object):
     def _helper(self, s, start, end, palin):
@@ -37,7 +39,7 @@ class Solution(object):
             start -= 1
             end += 1
         return palin
-        
+
     def _get_palin(self, s, idx):
         palin1 = self._helper(s, idx - 1, idx + 1, s[idx])
         if idx == len(s) - 1 or s[idx] != s[idx + 1]:
@@ -60,12 +62,15 @@ class Solution(object):
                 best_palin = palin
         return best_palin
 
+
 def test():
     solver = Solution()
     assert solver.longest_palindrome('babad') in set(['bab', 'aba'])
     assert solver.longest_palindrome('cbbd') == 'bb'
     assert solver.longest_palindrome('') == ''
     assert solver.longest_palindrome('safljkl23kljaaa') == 'aaa'
-    assert solver.longest_palindrome('safasdfbbbabbl23kljaaa') in set(['bbabb', 'safas'])
+    assert solver.longest_palindrome(
+        'safasdfbbbabbl23kljaaa') in set(['bbabb', 'safas'])
+
 
 test()

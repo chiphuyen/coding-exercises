@@ -4,6 +4,7 @@ import sys
 
 from binary_heap import BinaryHeap
 
+
 def insertion_sort(arr):
     for j in range(1, len(arr)):
         key = arr[j]
@@ -14,6 +15,7 @@ def insertion_sort(arr):
         arr[i + 1] = key
     return arr
 
+
 def selection_sort(arr):
     for i in range(len(arr) - 1):
         min_idx = i
@@ -23,14 +25,16 @@ def selection_sort(arr):
         arr = _swap(arr, i, min_idx)
     return arr
 
+
 def merge_sort(arr):
     '''
     As described in "Introduction to Algorithms" (CLRS book)
-    Our MERGE procedure takes time O(n), 
+    Our MERGE procedure takes time O(n),
     where n = r - p + 1 is the number of elements being merged.
     merge_sort runs in O(nlogn)
     '''
     return _merge_sort_helper(arr, 0, len(arr) - 1)
+
 
 def heap_sort(arr):
     '''
@@ -45,11 +49,13 @@ def heap_sort(arr):
         result.append(heap.extract_min())
     return result
 
+
 def quick_sort(arr):
     '''
     As described in "Introduction to Algorithms" (CLRS book)
     '''
     return _quick_sort_helper(arr, 0, len(arr) - 1)
+
 
 def counting_sort(arr, upper=None, lower=0):
     '''
@@ -65,19 +71,22 @@ def counting_sort(arr, upper=None, lower=0):
     for value in arr:
         c[value - lower] += 1
     for i in range(1, upper - lower + 1):
-        c[i] += c[i-1]
+        c[i] += c[i - 1]
     b = arr[:]
     for i in range(len(arr) - 1, -1, -1):
         b[c[arr[i] - lower] - 1] = arr[i]
         c[arr[i] - lower] -= 1
     return b
 
+
 def radix_sort(arr, d):
     '''
     As described in "Introduction to Algorithms" (CLRS book)
-    the following procedure assumes that each element in the n-element array A has d digits, 
-    where digit 1 is the lowest-order digit and digit d is the highest-order digit.
-    We use counting sort as a stable subroutine for radix sort
+    the following procedure assumes that each element inthe n-element array A
+    has d digits, where digit 1 is the lowest-order digit and digit d is the
+    highest-order digit.
+    
+    We use counting sort as a stable subroutine for radix sort.
     '''
     i = 10
     for i in range(1, d + 1):
@@ -88,13 +97,15 @@ def radix_sort(arr, d):
 def bucket_sort(arr, buckets=10):
     '''
     As described in "Introduction to Algorithms" (CLRS book)
-    Bucket sort runs in linear time when the input is drawn from a uniform distribution.
-    The idea of bucket sort is to divide the interval [0, 1) into n equal-sized buckets, 
-    and then distribute the n input numbers into the buckets. 
-    Since the inputs are uniformly distributed over [0, 1), we don't expect many numbers 
-    to fall into each bucket. 
-    We then simply sort the numbers in each bucket and  go through the buckets in order, 
-    listing the elements in each.
+    Bucket sort runs in O(n) when input is drawn from a uniform distribution.
+
+    The idea of bucket sort is to divide the interval [0, 1) into n equal-sized
+    buckets, and then distribute the n input numbers into the buckets.
+    Since the inputs are uniformly distributed over [0, 1), we don't expect
+    many numbers to fall into each bucket.
+
+    We then simply sort the numbers in each bucket and  go through the buckets
+    in order, listing the elements in each.
     '''
     b = [[] for _ in range(buckets)]
     for value in arr:
@@ -107,11 +118,13 @@ def bucket_sort(arr, buckets=10):
 
     return result
 
+
 def _swap(arr, i, j):
     temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
     return arr
+
 
 def _partition(arr, p, r):
     x = arr[r]
@@ -124,6 +137,7 @@ def _partition(arr, p, r):
 
     return i + 1, arr
 
+
 def _quick_sort_helper(arr, p, r):
     if p < r:
         q, arr = _partition(arr, p, r)
@@ -131,9 +145,10 @@ def _quick_sort_helper(arr, p, r):
         arr = _quick_sort_helper(arr, q + 1, r)
     return arr
 
+
 def _merge(arr, p, q, r):
-    left = arr[p : q + 1] + [float('inf')]
-    right = arr[q + 1 : r + 1] + [float('inf')]
+    left = arr[p: q + 1] + [float('inf')]
+    right = arr[q + 1: r + 1] + [float('inf')]
     i = j = 0
     for k in range(p, r + 1):
         if left[i] < right[j]:
@@ -144,6 +159,7 @@ def _merge(arr, p, q, r):
             j += 1
     return arr
 
+
 def _merge_sort_helper(arr, p, r):
     if p < r:
         q = (p + r) // 2
@@ -151,6 +167,7 @@ def _merge_sort_helper(arr, p, r):
         arr = _merge_sort_helper(arr, q + 1, r)
         arr = _merge(arr, p, q, r)
     return arr
+
 
 def _find_bounds(arr):
     lower = float('inf')
@@ -162,6 +179,7 @@ def _find_bounds(arr):
             upper = value
     return lower, upper
 
+
 def _counting_sort_on_digit(arr, digit):
     div = 10 ** (digit - 1)
     c = [0 for _ in range(10)]
@@ -169,7 +187,7 @@ def _counting_sort_on_digit(arr, digit):
         digit = (value // div) % 10
         c[digit] += 1
     for i in range(1, 10):
-        c[i] += c[i-1]
+        c[i] += c[i - 1]
 
     b = arr[:]
     for i in range(len(arr) - 1, -1, -1):
@@ -178,13 +196,15 @@ def _counting_sort_on_digit(arr, digit):
         c[digit] -= 1
     return b
 
-arrs = [[1, -2, 2, 30, 2, 10, 2, 2, 1], 
-        [], 
-        [1], 
-        [1, 3, -1], 
-        [2, 3, 2, 5, 6, 5], 
-        [10], 
+
+arrs = [[1, -2, 2, 30, 2, 10, 2, 2, 1],
+        [],
+        [1],
+        [1, 3, -1],
+        [2, 3, 2, 5, 6, 5],
+        [10],
         [100, 123, 880, 231, 239, 293, 591, 942, 704, 101, 809]]
+
 
 def test():
     for arr in arrs:
@@ -200,5 +220,6 @@ def test():
     a = bucket_sort(arr, 12)
     for i in range(1, len(a)):
         assert a[i - 1] <= a[i]
+
 
 test()

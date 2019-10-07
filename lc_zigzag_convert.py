@@ -2,16 +2,19 @@
 This problem is from leetcode.com
 https://leetcode.com/problems/zigzag-conversion/description/
 
-The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
+The string "PAYPALISHIRING" is written in a zigzag pattern on
+a given number of rows like this:
 (you may want to display this pattern in a fixed font for better legibility)
 
 P   A   H   N
 A P L S I I G
 Y   I   R
 And then read line by line: "PAHNAPLSIIGYIR"
-Write the code that will take a string and make this conversion given a number of rows:
+Write the code that will take a string and make this conversion
+given a number of rows:
 
 string convert(string text, int nRows);
+
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 
 My solution:
@@ -23,8 +26,9 @@ There are two versions:
     The secone one is the hacky one that is accepted by leetcode
 '''
 
+
 class Solution(object):
-    ''' 
+    '''
     This solution is not accepted by leetcode for being too slow.
     '''
 
@@ -43,10 +47,12 @@ class Solution(object):
             line += ''.join([s[j] for j in range(len(s)) if j % skip in idx])
         return line
 
+
 class Solution(object):
-    ''' 
+    '''
     This solution is accepted by leetcode.
     '''
+
     def convert(self, s, numRows):
         """
         :type s: str
@@ -71,5 +77,3 @@ class Solution(object):
                     idx.append(skip * intervals + mod)
             line += [s[j] for j in idx]
         return ''.join(line)
-            
-            

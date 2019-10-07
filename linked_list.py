@@ -10,11 +10,15 @@ Extra usage:
     list(ll): list all values in the list
 
 '''
+
+
 class Node(object):
     __slots__ = ('value', 'next')
+
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
 
 class LinkedList(object):
     def __init__(self):
@@ -37,10 +41,10 @@ class LinkedList(object):
             raise ValueError()
         if prev:
             prev.next = node.next
-        else: # we're removing the head
+        else:  # we're removing the head
             self._head = node.next
 
-        if not node.next: # the node we remove is the tail of the list
+        if not node.next:  # the node we remove is the tail of the list
             self._tail = prev
 
         self._len -= 1
@@ -48,7 +52,6 @@ class LinkedList(object):
     def __contains__(self, value):
         _, _, found = self._find_value(self._head, None, value)
         return found
-        
 
     def __len__(self):
         return self._len
@@ -68,6 +71,7 @@ class LinkedList(object):
             prev = curr
             curr = curr.next
         return curr, prev, False
+
 
 def test_linkedlist():
     ll = LinkedList()
@@ -91,6 +95,3 @@ def test_linkedlist():
 
 
 test_linkedlist()
-
-
-

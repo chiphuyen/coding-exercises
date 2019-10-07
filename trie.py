@@ -13,6 +13,7 @@ Extra usage:
     list(trie): list all the words in the trie
 '''
 
+
 class Node(object):
     __slots__ = ('value', 'marks_end', 'children', 'parent')
 
@@ -35,14 +36,15 @@ class Node(object):
     def __getitem__(self, char):
         return self.children[char]
 
+
 class Trie(object):
     def __init__(self):
-        self._root = Node() # the value of node is None
+        self._root = Node()  # the value of node is None
 
     def insert(self, word):
         curr = self._root
         for char in word:
-            if not char in curr.children:
+            if char not in curr.children:
                 curr.add_child(char)
             curr = curr[char]
         curr.marks_end = True
@@ -61,7 +63,7 @@ class Trie(object):
 
     def has_word(self, word):
         found, node = self._find_end_node(word)
-        return (found and node.marks_end)
+        return found and node.marks_end
 
     def __iter__(self):
         yield from self._iter(self._root, '')
@@ -75,7 +77,7 @@ class Trie(object):
     def _find_end_node(self, token):
         curr = self._root
         for char in token:
-            if not char in curr.children:
+            if char not in curr.children:
                 return False, curr
             curr = curr[char]
         return True, curr
@@ -105,5 +107,5 @@ def test_trie():
     print(trie.has_word('haha'))
     print(trie.has_prefix('hi'))
 
-test_trie()
 
+test_trie()
