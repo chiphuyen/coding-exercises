@@ -27,7 +27,9 @@ Data structures
 - [x] Binary heap class (binary_heap.py) - 2
 - [ ] Binary tree class (binary_tree.py) - 1
 - [x] Binary search tree class that allows duplicate values (binary_search_tree.py) - 2
+	  
 	  BST class inherits binary tree class
+	  
 - [ ] Red black tree class (red_black_tree.py)
 - [ ] B+ tree class (b_tree.py) - 3
 - [x] Trie class that allows word removal (trie.py) - 2
@@ -102,11 +104,15 @@ Programming Puzzles
 - [x] Reverse integers (lc_reverse_int.py) - 1
 - [x] Sieve of Eratosthenes (sieve_prime.py) - 1
 - [x] Two sum in O(n) time (lc_two_sum.py) - 1
+	  
 	  Given an array of integers, return indices of the two numbers 
 	  such that they add up to a specific target.
+
 - [x] Year with maximum population (year_max_pop.py) - 1
+	  
 	  Given a list of people with their years of birth and death, 
 	  find the year with max population
+
 - [x] FizzBuzz (fizzbuzz.py) - 1
 - [x] ZigZag conversion (lc_zigzag_convert.py) - 2
 - [x] Find sum of all subarrays of an array (subarray_sum.py) - 2
@@ -118,9 +124,9 @@ Programming Puzzles
 
 ### Games
 - [x] Game of ghost (ghost.py) - 3
+	  
 	  Ghost is a word game in which players take turns adding letters to a
 	  growing word fragment, trying not to be the one to complete a valid word.
 
 	  This implementation uses minimax with alpha-beta pruning to make sure the computer always wins.
 	  It uses a Trie to keep track of the dictionary.
-	  
