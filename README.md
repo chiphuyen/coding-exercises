@@ -115,3 +115,12 @@ Programming Puzzles
 - [ ] Find nth smallest number that can be created using a list of prime factors
 - [ ] Count occurences of given digit in all numbers up to n
 - [ ] Rotate N x N matrix in place
+
+### Games
+- [x] Game of ghost (ghost.py) - 3
+	  Ghost is a word game in which players take turns adding letters to a
+	  growing word fragment, trying not to be the one to complete a valid word.
+
+	  This implementation uses minimax with alpha-beta pruning to make sure the computer always wins.
+	  It uses a Trie to keep track of the dictionary.
+	  
